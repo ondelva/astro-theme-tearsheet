@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.9.1] - 2026-10-12
+
+### Fixed
+
+- The archive page shifted when the heading face loaded on systems without Arial (Linux,
+  Android), failing the Lighthouse performance gate in CI. Weight 500 is now preloaded.
+
 ## [0.9.0] - 2026-10-12
 
 First snapshot. The theme is complete; the live demo and the screenshots follow in 1.0.0.

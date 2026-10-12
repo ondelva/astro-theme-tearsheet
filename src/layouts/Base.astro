@@ -22,12 +22,14 @@ const { home, ...seo } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <SEO {...seo} />
-    {/* Preload what the first screen sets: body 400 and the heading weights. A face that is
-        not preloaded swaps in late and shifts the page. */}
+    {/* Preload what the first screen sets: body 400 and the heading face's 500 (archive rows,
+        meta), 700 and 800. A face that is not preloaded swaps in late and shifts the page; where
+        Arial is missing (Linux, Android) the metric-matched fallback does not apply either. */}
     <Font cssVariable="--font-body" preload={[{ weight: '400', style: 'normal' }]} />
     <Font
       cssVariable="--font-heading"
       preload={[
+        { weight: '500', style: 'normal' },
         { weight: '700', style: 'normal' },
         { weight: '800', style: 'normal' },
       ]}
