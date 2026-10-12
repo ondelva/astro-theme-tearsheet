@@ -3,7 +3,8 @@
 An Astro theme for a newsletter: ruled pages, issue numbers in the margin, and The Cut, which
 removes the members part of an issue from the build. Free and MIT-licensed.
 
-[Live demo](https://tearsheet-free.ondelva.com) · [Pro demo](https://tearsheet.ondelva.com)
+[Live demo](https://tearsheet-free.ondelva.com) · [Pro demo](https://tearsheet.ondelva.com) ·
+[Get Pro](https://buy.polar.sh/polar_cl_EdLE1JPAd1gg6NuvLXcytVhMelq4fakFk3Kfy1MyAEB)
 
 ![Tearsheet: the home page and a members issue](docs/screenshots/home-light.png)
 
@@ -78,7 +79,8 @@ repository is **private**: the members text is cut from the site, not from the r
 ## Free vs Pro
 
 This edition is a finished newsletter site with The Cut. Pro is for moving an existing newsletter
-over and running it: see it at [tearsheet.ondelva.com](https://tearsheet.ondelva.com).
+over and running it: see it at [tearsheet.ondelva.com](https://tearsheet.ondelva.com), and
+[buy it here](https://buy.polar.sh/polar_cl_EdLE1JPAd1gg6NuvLXcytVhMelq4fakFk3Kfy1MyAEB): $49 for one person, $129 for a team of up to ten.
 
 |                | Free (this repo)                                           | Pro                                                  |
 | -------------- | ---------------------------------------------------------- | ---------------------------------------------------- |

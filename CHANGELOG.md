@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.0] - 2026-10-12
+
+First release. The demo is live at https://tearsheet-free.ondelva.com, with screenshots in
+`docs/screenshots/` and the link to Pro.
+
 ## [0.9.1] - 2026-10-12
 
 ### Fixed
