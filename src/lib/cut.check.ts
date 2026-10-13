@@ -1,6 +1,7 @@
 // Run: node --experimental-strip-types src/lib/cut.check.ts
 import assert from 'node:assert/strict';
 import { countWords, isoWeekLabel, splitAtCut } from './cut.ts';
+import { captionIndexes } from './caption-plugin.ts';
 
 assert.equal(countWords('# Title\n\nOne [two](https://x.y/z) three-four 5,000 TEU.'), 6);
 assert.equal(countWords('a <!-- hidden words here --> b'), 2);
@@ -25,4 +26,10 @@ assert.deepEqual([mdx.members, mdx.totalWords], [true, 2], 'MDX marker, not coun
 assert.equal(countWords('<p>Two <a href="https://x.y/a-b-c">words</a></p>'), 2, 'HTML tags');
 const quoted = splitAtCut('Put `<!-- cut -->` on its own line.\n\n<!-- cut -->\n\npaid words');
 assert.equal(quoted.freeWords, 5, 'a marker in inline code is not the cut');
+// A caption is a paragraph wholly in emphasis after a picture; one emphasised word is not.
+const p = (...kids: string[]) => ({ type: 'paragraph', children: kids.map((type) => ({ type })) });
+assert.deepEqual(
+  captionIndexes([p('image'), p('emphasis'), p('image'), p('text', 'emphasis', 'text')]),
+  [1],
+);
 console.log('cut.ts ok');

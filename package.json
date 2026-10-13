@@ -1,7 +1,7 @@
 {
   "name": "astro-theme-tearsheet",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "A briefing-style Astro theme for newsletters: ruled pages, issue numbers in the margin, and The Cut that strips members-only text from the build.",
   "engines": {

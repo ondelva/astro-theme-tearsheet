@@ -7,6 +7,7 @@ import icon from 'astro-icon';
 import { site } from './src/config.ts';
 import { satteri } from '@astrojs/markdown-satteri';
 import { cutPlugin } from './src/lib/cut-plugin.ts';
+import { captionPlugin } from './src/lib/caption-plugin.ts';
 
 // Webfonts. Piazzolla sets the body (a text face drawn for news columns, sturdy at small
 // sizes); Barlow Semi Condensed sets headings, issue numbers and the UI.
@@ -37,7 +38,7 @@ export default defineConfig({
   // SITE_URL overrides config.ts at build time (used by demo deploys).
   site: process.env.SITE_URL ?? site.url,
   markdown: {
-    processor: satteri({ mdastPlugins: [cutPlugin] }),
+    processor: satteri({ mdastPlugins: [cutPlugin, captionPlugin] }),
     // The default github-dark sets comments at about 3:1 on its background, under WCAG AA.
     shikiConfig: { theme: 'github-dark-high-contrast' },
   },

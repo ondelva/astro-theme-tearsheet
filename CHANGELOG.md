@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.1] - 2026-10-13
+
+### Fixed
+
+- A caption is now only a paragraph set wholly in emphasis right after a picture. A paragraph
+  there that merely contains one emphasised word stays body text. Captions get class `caption`
+  from `src/lib/caption-plugin.ts`.
+
 ## [1.0.0] - 2026-10-12
 
 First release. The demo is live at https://tearsheet-free.ondelva.com, with screenshots in

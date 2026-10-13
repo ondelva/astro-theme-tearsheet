@@ -197,7 +197,8 @@
     text-align: end;
   }
   /* A picture is a paragraph holding only an image. A line set wholly in emphasis right after
-     it is its caption: `*Caption. Photo: name, licence.*` — plain Markdown, no component. */
+     it is its caption: `*Caption. Photo: name, licence.*` — plain Markdown, no component.
+     src/lib/caption-plugin.ts gives it class caption. */
   .prose img {
     display: block;
     width: 100%;
@@ -206,14 +207,14 @@
   .prose p:has(> img:only-child) {
     margin-top: 1.75em;
   }
-  .prose p:has(> img:only-child) + p:has(> em:only-child) {
+  .prose .caption {
     margin-top: 0.5em;
     font-family: var(--font-heading);
     font-size: 0.9375rem;
     line-height: 1.4;
     color: var(--muted);
   }
-  .prose p:has(> img:only-child) + p > em:only-child {
+  .prose .caption > em {
     font-style: normal;
   }
   .prose sup {
