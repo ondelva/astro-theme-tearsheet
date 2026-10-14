@@ -14,7 +14,18 @@ export function countWords(md: string): number {
     .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ') // pictures: alt text is not prose a reader reads
     .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // keep link text, drop the URL
     .replace(/\[\^[^\]]+\]:?/g, ' '); // footnote markers; lone markup tokens (-, #, |) have no letters and drop below
-  return text.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
+  // Chinese and Japanese are written without spaces: each character counts as a word and reads
+  // faster than one. Korean separates words with spaces and counts like English.
+  const CJK = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/gu;
+
+  const cjk = text.match(CJK)?.length ?? 0;
+  return (
+    cjk +
+    text
+      .replace(CJK, ' ')
+      .split(/\s+/)
+      .filter((w) => /[\p{L}\p{N}]/u.test(w)).length
+  );
 }
 
 export interface CutStats {

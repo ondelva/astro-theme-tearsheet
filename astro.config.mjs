@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 import { site } from './src/config.ts';
 import { satteri } from '@astrojs/markdown-satteri';
+import { tableScroll } from './src/lib/table-scroll.ts';
 import { cutPlugin } from './src/lib/cut-plugin.ts';
 import { captionPlugin } from './src/lib/caption-plugin.ts';
 
@@ -38,7 +39,7 @@ export default defineConfig({
   // SITE_URL overrides config.ts at build time (used by demo deploys).
   site: process.env.SITE_URL ?? site.url,
   markdown: {
-    processor: satteri({ mdastPlugins: [cutPlugin, captionPlugin] }),
+    processor: satteri({ mdastPlugins: [cutPlugin, captionPlugin], hastPlugins: [tableScroll] }),
     // The default github-dark sets comments at about 3:1 on its background, under WCAG AA.
     shikiConfig: { theme: 'github-dark-high-contrast' },
   },

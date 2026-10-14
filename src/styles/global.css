@@ -169,10 +169,13 @@
     font-size: 0.875em;
   }
   /* Tables are the briefing's charts: ruled, numbers aligned, scroll inside on narrow screens */
-  .prose table {
-    display: block;
+  /* The scroll is on the wrapper (src/…/table-scroll.ts): a table set to display: block
+     is no longer read out as a table. */
+  .prose .table-scroll {
     max-width: 100%;
     overflow-x: auto;
+  }
+  .prose table {
     border-collapse: collapse;
     font-family: var(--font-heading);
     font-size: 1rem;

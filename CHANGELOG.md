@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.2] - 2026-10-14
+
+### Fixed
+
+- With analytics set to GA4, `gtag()` is now on `window`, so your own events can call it (it was a function local to the snippet).
+- A wide table in a post scrolls inside a wrapper (`.table-scroll`) instead of having its own display changed, so screen readers still announce it as a table.
+- Chinese and Japanese are counted by character for the reading time; a sentence without spaces used to count as one word.
+
 ## [1.0.1] - 2026-10-13
 
 ### Fixed
