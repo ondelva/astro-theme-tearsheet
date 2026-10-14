@@ -2,7 +2,7 @@
 // getCollection('issues') themselves, or one of them will forget the filter. Drafts stay out in
 // dev too: they would take an issue number and shift every later one.
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { newsletter } from '../config';
+import { newsletter, site } from '../config';
 import { isoWeekLabel, splitAtCut, type CutStats } from './cut';
 
 export type Issue = CollectionEntry<'issues'> & {
@@ -37,7 +37,7 @@ async function loadIssues(): Promise<Issue[]> {
     .reverse();
 }
 
-const dateFormat = new Intl.DateTimeFormat('en', {
+const dateFormat = new Intl.DateTimeFormat(site.locale, {
   year: 'numeric',
   month: 'short',
   day: 'numeric',

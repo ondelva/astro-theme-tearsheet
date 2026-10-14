@@ -1,12 +1,13 @@
 ---
 // A plain HTML form, no script. Where it posts comes from src/lib/subscribe-target.ts.
 import { subscribeTarget } from '../../lib/subscribe-target';
+import { ui } from '../../config';
 
 interface Props {
   button?: string;
   id?: string; // unique per page when the form appears twice
 }
-const { button = 'Subscribe', id = 'subscribe-email' } = Astro.props;
+const { button = ui.form.button, id = 'subscribe-email' } = Astro.props;
 const target = subscribeTarget();
 ---
 
@@ -20,7 +21,7 @@ const target = subscribeTarget();
     <input type="hidden" {name} {value} />
   ))}
   <label for={id} class="sr-only">
-    Email address
+    {ui.form.email}
   </label>
   <input
     id={id}
@@ -28,7 +29,7 @@ const target = subscribeTarget();
     name={target.emailField}
     required
     autocomplete="email"
-    placeholder="you@company.com"
+    placeholder={ui.form.placeholder}
   />
   <button type="submit" class="font-ui">
     {button}

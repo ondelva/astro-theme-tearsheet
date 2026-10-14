@@ -2,29 +2,27 @@
 import Base from '../layouts/Base.astro';
 import Ledger from '../components/issue/Ledger.astro';
 import SubscribeForm from '../components/issue/SubscribeForm.astro';
-import { newsletter, plans, site } from '../config';
+import { newsletter, plans, ui } from '../config';
+
+const t = ui.subscribe;
 import { getIssues } from '../lib/issues';
 
 const samples = (await getIssues()).filter((i) => !i.cut.members).slice(0, 3);
 ---
 
-<Base title="Subscribe" description={`${site.description} Free and paid plans.`}>
+<Base title={t.title} description={t.description}>
   <div class="max-w-wide mx-auto px-4 pt-10">
     <div class="md:ms-[8.75rem] max-w-content">
-      <h1 class="text-4xl font-bold sm:text-5xl">Subscribe</h1>
-      <p class="mt-4 text-lg">
-        {newsletter.cadence}, {site.name} sends one issue on container freight rates, capacity and
-        the schedule data behind them, written by {site.author}. Sign up free, then upgrade from the
-        welcome email if you want the members issues in full.
-      </p>
+      <h1 class="text-4xl font-bold sm:text-5xl">{t.title}</h1>
+      <p class="mt-4 text-lg">{t.intro(newsletter.cadence)}</p>
 
       <table class="plans font-ui mt-10 w-full tabular-nums">
-        <caption class="sr-only">Plans</caption>
+        <caption class="sr-only">{t.plans}</caption>
         <thead>
           <tr>
-            <th scope="col">Plan</th>
-            <th scope="col">Price</th>
-            <th scope="col">What you get</th>
+            <th scope="col">{t.plan}</th>
+            <th scope="col">{t.price}</th>
+            <th scope="col">{t.get}</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +43,7 @@ const samples = (await getIssues()).filter((i) => !i.cut.members).slice(0, 3);
       {samples.length > 0 && (
         <section aria-labelledby="samples" class="mt-16">
           <h2 id="samples" class="text-2xl font-bold">
-            Read a free issue first
+            {t.samples}
           </h2>
           <div class="mt-4">
             <Ledger issues={samples} />

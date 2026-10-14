@@ -2,7 +2,7 @@
 // so entry.rendered.html already stops at the cut.
 import rss from '@astrojs/rss';
 import type { APIRoute } from 'astro';
-import { site } from '../config';
+import { site, ui } from '../config';
 import { getIssues, issueHref } from '../lib/issues';
 
 export const GET: APIRoute = async (context) => {
@@ -20,7 +20,7 @@ export const GET: APIRoute = async (context) => {
       content:
         (issue.rendered?.html ?? '') +
         (issue.cut.members
-          ? `<p><a href="${new URL(issueHref(issue), context.site)}">Continue reading: ${issue.cut.membersWords} more words for members</a></p>`
+          ? `<p><a href="${new URL(issueHref(issue), context.site)}">${ui.cut.feed(issue.cut.membersWords.toLocaleString(site.locale))}</a></p>`
           : ''),
     })),
     customData: `<language>${site.locale}</language>`,

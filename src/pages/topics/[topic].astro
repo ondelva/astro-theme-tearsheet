@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import YearLedger from '../../components/issue/YearLedger.astro';
 import { getIssues, topicSlug, topicsOf, type Issue } from '../../lib/issues';
+import { ui } from '../../config';
 
 export async function getStaticPaths() {
   const issues = await getIssues();
@@ -18,18 +19,17 @@ interface Props {
 const { name, issues } = Astro.props;
 ---
 
-<Base title={name} description={`Issues on ${name.toLowerCase()}.`}>
+<Base title={name} description={ui.topic.description(name)}>
   <div class="max-w-wide mx-auto px-4 pt-10">
     <header class="md:ms-[8.75rem] max-w-content">
       <p class="font-ui font-medium">
         <a href="/archive" class="underline">
-          Archive
+          {ui.archive.title}
         </a>
       </p>
       <h1 class="mt-1 text-4xl font-bold sm:text-5xl">{name}</h1>
       <p class="font-ui text-muted mt-3 font-medium tabular-nums">
-        {issues.length} {issues.length === 1 ? 'issue' : 'issues'}. The bar shows how much of each
-        issue is free.
+        {ui.issues(issues.length)}. {ui.bar.note}
       </p>
     </header>
     <YearLedger issues={issues} />

@@ -1,11 +1,19 @@
 ---
 // Light/dark switch. The value lands on <html data-theme>, which flips
 // color-scheme so every light-dark() token switches with it. No class variant.
+// Words from ui.theme in src/config.ts, passed to the script as data.
+import { ui } from '../../config';
+const { name, system, light, dark } = ui.theme;
 ---
 
-<button type="button" data-theme-toggle class="font-ui text-sm">
-  <span class="sr-only">Theme: </span>
-  <span data-theme-label>System</span>
+<button
+  type="button"
+  data-theme-toggle
+  data-words={JSON.stringify({ system, light, dark })}
+  class="font-ui text-sm"
+>
+  <span class="sr-only">{name}: </span>
+  <span data-theme-label>{system}</span>
 </button>
 
 <script>
@@ -14,6 +22,7 @@
   const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
   const label = button?.querySelector('[data-theme-label]');
   const order = ['system', 'light', 'dark'] as const;
+  const words: Record<string, string> = JSON.parse(button?.dataset.words ?? '{}');
 
   const read = () => {
     try {
@@ -26,7 +35,7 @@
   const apply = (value: string) => {
     if (value === 'system') root.removeAttribute('data-theme');
     else root.setAttribute('data-theme', value);
-    if (label) label.textContent = value[0].toUpperCase() + value.slice(1);
+    if (label) label.textContent = words[value] ?? value;
   };
 
   apply(read());

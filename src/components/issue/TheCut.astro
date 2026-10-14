@@ -3,7 +3,7 @@
 // whole, the members remainder, and the form. As a teaser (home) it shows the same meter and
 // links to the issue. newsletter.theCut = false keeps the removal and prints a plain link instead.
 import SubscribeForm from './SubscribeForm.astro';
-import { newsletter } from '../../config';
+import { newsletter, site, ui } from '../../config';
 import type { CutStats } from '../../lib/cut';
 
 interface Props {
@@ -11,34 +11,33 @@ interface Props {
   href?: string; // set for the teaser: the meter links to the issue instead of showing the form
 }
 const { cut, href } = Astro.props;
-const n = (x: number) => x.toLocaleString('en');
+const n = (x: number) => x.toLocaleString(site.locale);
+const t = ui.cut;
 ---
 
 {newsletter.theCut ? (
-  <div class="cut" role="note" aria-label="Members-only continuation">
+  <div class="cut" role="note" aria-label={t.label}>
     <p class="cut-meter font-ui tabular-nums">
       <span>
         {href
-          ? `${n(cut.freeWords)} of ${n(cut.totalWords)} words free`
-          : `You've read ${n(cut.freeWords)} of ${n(cut.totalWords)} words`}
+          ? t.teaser(n(cut.freeWords), n(cut.totalWords))
+          : t.read(n(cut.freeWords), n(cut.totalWords))}
       </span>
-      <span class="text-primary">
-        {n(cut.membersWords)} words · {cut.membersMinutes} min for members
-      </span>
+      <span class="text-primary">{t.rest(n(cut.membersWords), cut.membersMinutes)}</span>
     </p>
     <span class="meter" style={`--read: ${cut.freeShare}%`} aria-hidden="true" />
     {href ? (
       <a href={href} class="font-ui font-bold underline">
-        Read the free part
+        {t.readFree}
       </a>
     ) : (
-      <SubscribeForm button={`Read the rest · ${newsletter.price}`} id="cut-email" />
+      <SubscribeForm button={t.button(newsletter.price)} id="cut-email" />
     )}
   </div>
 ) : (
   <p class="font-ui mt-6 font-bold">
     <a href={href ?? '/subscribe'} class="underline">
-      Continue reading
+      {t.continue}
     </a>
   </p>
 )}
@@ -47,7 +46,7 @@ const n = (x: number) => x.toLocaleString('en');
     so a paying reader is not met with only a price. */}
 {!href && (
   <p class="font-ui text-muted mt-3 text-[0.9375rem]">
-    Already a member? Members get the full issue by email.
+    {t.member} {t.byEmail}
   </p>
 )}
 

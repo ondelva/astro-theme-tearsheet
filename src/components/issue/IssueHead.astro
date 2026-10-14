@@ -3,6 +3,7 @@
 // Below 40rem the number drops above the title on one line with its week label.
 import { formatDate, issueHref, topicHref, type Issue } from '../../lib/issues';
 import { readingMinutes } from '../../lib/cut';
+import { ui } from '../../config';
 
 interface Props {
   issue: Issue;
@@ -17,7 +18,7 @@ const { title, dek, date, topics } = issue.data;
   <p class="issue-no font-ui tabular-nums">
     {issue.number}
     <small>
-      {issue.week} · {issue.cut.members ? 'Members' : 'Free'}
+      {issue.week} · {issue.cut.members ? ui.members : ui.free}
     </small>
   </p>
   <div class="min-w-0">
@@ -34,7 +35,7 @@ const { title, dek, date, topics } = issue.data;
     <p class="font-ui text-muted mt-3 text-[0.9375rem]">
       <time datetime={date.toISOString()}>{formatDate(date)}</time>
       {' · '}
-      {readingMinutes(issue.cut.totalWords)} min
+      {ui.minutes(readingMinutes(issue.cut.totalWords))}
       {topics.map((topic) => (
         <>
           {' · '}

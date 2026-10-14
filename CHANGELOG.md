@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.0] - 2026-10-14
+
+### Added
+
+- Every word the theme prints is in `ui` in `src/config.ts`, ready to translate, including the `/subscribe` pitch. Dates and numbers follow `site.locale` (they were always English).
+
 ## [1.0.2] - 2026-10-14
 
 ### Fixed

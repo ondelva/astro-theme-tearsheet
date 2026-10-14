@@ -1,6 +1,7 @@
 ---
 // Archive rows: number, title, free/members meter, date. Shared by home and the archive.
 import { formatDate, issueHref, type Issue } from '../../lib/issues';
+import { ui } from '../../config';
 
 interface Props {
   issues: Issue[];
@@ -17,7 +18,7 @@ const { issues } = Astro.props;
       </a>
       <span class="meter" style={`--read: ${issue.cut.freeShare}%`}>
         <span class="sr-only">
-          {issue.cut.members ? `Members issue, ${issue.cut.freeShare}% free` : 'Free issue'}
+          {issue.cut.members ? ui.bar.members(issue.cut.freeShare) : ui.bar.free}
         </span>
       </span>
       <time class="text-muted text-sm" datetime={issue.data.date.toISOString()}>

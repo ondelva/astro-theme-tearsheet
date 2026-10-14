@@ -4,32 +4,23 @@
 // (DEMO_FORMS=1) send the form here directly and nothing is subscribed.
 import Base from '../layouts/Base.astro';
 import Ledger from '../components/issue/Ledger.astro';
-import { site } from '../config';
+import { ui } from '../config';
 import { getIssues } from '../lib/issues';
 
 const demo = import.meta.env.DEMO_FORMS === '1';
+const t = ui.subscribed;
 const samples = (await getIssues()).filter((i) => !i.cut.members).slice(0, 3);
 ---
 
-<Base title="Check your inbox" description={`Confirm your subscription to ${site.name}.`} noindex>
+<Base title={t.title} description={t.description} noindex>
   <div class="max-w-wide mx-auto px-4 pt-10">
     <div class="max-w-content md:ms-[8.75rem]">
-      <h1 class="text-4xl font-bold sm:text-5xl">Check your inbox</h1>
-      {demo ? (
-        <p class="mt-4 text-lg">
-          This is a demo site, so nothing was sent and no address was stored. On a real site the
-          form goes to your newsletter provider, which sends a confirmation email and then brings
-          the reader here.
-        </p>
-      ) : (
-        <p class="mt-4 text-lg">
-          A confirmation email is on its way. Click the link in it and you're on the list.
-        </p>
-      )}
+      <h1 class="text-4xl font-bold sm:text-5xl">{t.title}</h1>
+      {demo ? <p class="mt-4 text-lg">{t.demo}</p> : <p class="mt-4 text-lg">{t.text}</p>}
       {samples.length > 0 && (
         <section aria-labelledby="meanwhile" class="mt-12">
           <h2 id="meanwhile" class="text-2xl font-bold">
-            Meanwhile, three free issues
+            {t.meanwhile}
           </h2>
           <div class="mt-4">
             <Ledger issues={samples} />

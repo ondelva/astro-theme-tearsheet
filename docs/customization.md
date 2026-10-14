@@ -12,7 +12,7 @@ Two files hold almost everything: `src/config.ts` for what the site says and doe
 | `name`           | The masthead on the home page, the header on every other page, titles, the feed     |
 | `description`    | Home page meta description and the feed description                                 |
 | `url`            | Your production URL. Canonical links, the feed, the sitemap and `robots.txt` use it |
-| `locale`         | `<html lang>`                                                                       |
+| `locale`         | `<html lang>`, and the language of dates and numbers                                |
 | `author`         | The byline under the masthead, the subscribe page, the JSON-LD author               |
 | `defaultOgImage` | The share image for every page. A file in `public/`, 1200×630                       |
 
@@ -31,6 +31,15 @@ without it.
 `src/config.ts`, `nav`. `header` is the top bar, `footer` is a list of titled groups (the demo ships Site and Readers), `social`
 takes [Lucide](https://lucide.dev/icons) icon names. For an icon of your own, put the SVG in
 `src/icons/` and use `icon: 'name'` (the filename without `.svg`).
+
+## Words and language
+
+Every word the theme prints is in `ui` at the end of `src/config.ts`: the meter's words, the
+form, the home and archive headings, the subscribe and thank-you pages, the 404 page, the theme
+switch. The sentence that says what your
+newsletter covers on `/subscribe` is `ui.subscribe.intro`; rewrite it first. To publish in
+another language, set `site.locale` and translate `ui`. Counts are functions, so plurals stay
+right: ``issues: (count) => `${count} Ausgaben` ``.
 
 ## The newsletter
 

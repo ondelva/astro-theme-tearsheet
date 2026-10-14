@@ -1,5 +1,5 @@
 ---
-import { nav, site } from '../../config';
+import { nav, site, ui } from '../../config';
 
 const year = new Date().getFullYear();
 ---
@@ -24,7 +24,7 @@ const year = new Date().getFullYear();
       {`© ${year} ${site.name}`}
       {' · '}
       <a href="/rss.xml" class="underline">
-        RSS
+        {ui.rss}
       </a>
       {' · '}
       <a href="https://github.com/ondelva/astro-theme-tearsheet" class="underline">

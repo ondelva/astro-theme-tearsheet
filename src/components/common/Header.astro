@@ -1,7 +1,7 @@
 ---
 // Sticky top bar. On the home page the masthead prints the name large, so `home` drops it here.
 import ThemeToggle from './ThemeToggle.astro';
-import { features, nav, site } from '../../config';
+import { features, nav, site, ui } from '../../config';
 
 interface Props {
   home?: boolean;
@@ -19,7 +19,7 @@ const here = Astro.url.pathname.replace(/\/$/, '');
     )}
     {/* Nav and toggle wrap as one group, so the toggle never drops to a line of its own */}
     <div class="ms-auto flex items-baseline gap-x-5">
-      <nav aria-label="Main">
+      <nav aria-label={ui.mainNav}>
         <ul class="flex flex-wrap gap-x-5 font-medium">
           {nav.header.map(({ label, href }) => (
             <li>
